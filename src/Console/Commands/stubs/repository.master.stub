@@ -1,0 +1,82 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyFullModelClass;
+use DummyFullResourceClass;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class DummyClass
+{
+    public function index()
+    {
+        return response()->json([]);
+    }
+
+    public function create()
+    {
+        return response()->json([
+            'form' => DummyModelClass::initialize()
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $items = $request->items;
+
+        $DummyModelVariable = new DummyModelClass;
+        $DummyModelVariable->fill($request->except('items'));
+
+        $DummyModelVariable = DB::transaction(function () use ($DummyModelVariable, $items) {
+            $DummyModelVariable->storeHasMany([
+                'items' => $items
+            ]);
+
+            return $DummyModelVariable;
+        });
+
+        return response()->json(['saved' => true, 'id' => $DummyModelVariable->id]);
+    }
+
+    public function show(DummyModelClass $DummyModelVariable)
+    {
+        return new DummyResourceClass($DummyModelVariable);
+    }
+
+    public function update(Request $request, DummyModelClass $DummyModelVariable)
+    {
+        $items = $request->items;
+
+        $DummyModelVariable->fill($request->except('items'));
+
+        $DummyModelVariable = DB::transaction(function () use ($DummyModelVariable, $items) {
+            $DummyModelVariable->storeHasMany([
+                'items' => $items
+            ]);
+
+            return $DummyModelVariable;
+        });
+
+        return response()->json(['saved' => true, 'id' => $DummyModelVariable->id]);
+    }
+
+    public function remote(Request $request)
+    {
+        return response()->json([]);
+    }
+
+    public function get(Request $request)
+    {
+        return response()->json([]);
+    }
+
+    public function destroy(DummyModelClass $DummyModelVariable)
+    {
+        $deleted = DB::transaction(function () use ($DummyModelVariable) {
+            $DummyModelVariable = $DummyModelVariable->verifyIfCanDelete();
+            return $DummyModelVariable->delete();
+        });
+        return response()->json(['deleted' => $deleted]);
+    }
+}

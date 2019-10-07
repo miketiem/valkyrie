@@ -1,0 +1,25 @@
+<?php
+
+namespace DummyNamespace;
+
+use Valkyrie\Model;
+
+class DummyClass extends Model {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        //
+    ];
+
+    /**
+     * The attributes that will be used to filter.
+     *
+     * @var array
+     */
+    protected $filter = [
+        //
+    ];
+}

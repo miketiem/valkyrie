@@ -1,0 +1,43 @@
+{
+    "name": "miketiem/valkyrie",
+    "description": "Create an RestFUL API structure in a easier way with simple commands",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Torres",
+            "email": "mtorresm.094@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/console": "^5.8|^6.0",
+        "illuminate/database": "^5.8|^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "orchestra/testbench": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "MikeTiEm\\Valkyrie\\": "src/"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MikeTiEm\\Valkyrie\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MikeTiEm\\Valkyrie\\ValkyrieServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

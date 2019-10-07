@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use Valkyrie\Model;
+use MikeTiEm\Valkyrie\Model;
 
 class DummyClass extends Model {
     /**
